@@ -9,10 +9,11 @@ from setuptools.command.build_ext import build_ext
 
 
 class CMakeExtension(Extension):
-    def __init__(self, cmake_target, cmake_lists_dir, cmake_options=None, cmake_install_lib_prefix='lib', **kwargs):
+    def __init__(self, cmake_target, cmake_lists_dir, name=None, cmake_options=None, cmake_install_lib_prefix='lib',
+                 **kwargs):
         if cmake_options is None:
             cmake_options = []
-        Extension.__init__(self, cmake_target, sources=[], **kwargs)
+        Extension.__init__(self, name if name else cmake_target, sources=[], **kwargs)
         self.cmake_lists_dir = os.path.abspath(cmake_lists_dir)
         self.cmake_options = cmake_options
         self.cmake_target = cmake_target
