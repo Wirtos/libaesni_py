@@ -1,0 +1,3 @@
+[submodule "libaesni"]
+	path = libaesni
+	url = https://github.com/Wirtos/libaesni
