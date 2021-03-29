@@ -31,8 +31,8 @@ static PyObject *ige(PyObject *args, uint8_t encrypt) {
         PyErr_SetString(PyExc_ValueError, "IV size must be exactly 32 bytes");
         return NULL;
     }
-    buf = malloc(data.len);
     Py_BEGIN_ALLOW_THREADS
+    buf = malloc(data.len);
     if (encrypt) {
         /*buf = ige256(data.buf, data.len, key.buf, iv.buf, encrypt);*/
         intel_AES_enc256_IGE(data.buf, buf, key.buf, iv.buf, data.len / 16);
@@ -91,8 +91,8 @@ static PyObject *ctr256_encrypt(PyObject *self, PyObject *args) {
         PyErr_SetString(PyExc_ValueError, "State value must be in the range [0, 15]");
         return NULL;
     }*/
-    buf = malloc(data.len);
     Py_BEGIN_ALLOW_THREADS
+    buf = malloc(data.len);
    /* buf = ctr256(data.buf, data.len, key.buf, iv.buf, state.buf);*/
     intel_AES_encdec256_CTR(data.buf, buf, key.buf, iv.buf, data.len / 16);
     Py_END_ALLOW_THREADS
@@ -134,9 +134,9 @@ static PyObject *cbc(PyObject *args, uint8_t encrypt) {
         PyErr_SetString(PyExc_ValueError, "IV size must be exactly 16 bytes");
         return NULL;
     }
-    buf = malloc(data.len);
     Py_BEGIN_ALLOW_THREADS
     /*buf = cbc256(data.buf, data.len, key.buf, iv.buf, encrypt);*/
+    buf = malloc(data.len);
     if (encrypt) {
         intel_AES_enc256_CBC(data.buf, buf, key.buf, iv.buf, data.len / 16);
     }
