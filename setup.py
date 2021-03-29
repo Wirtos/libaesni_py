@@ -75,5 +75,4 @@ setup(
     ],
     cmdclass={'build_ext': CMakeBuild},
     zip_safe=False,
-    install_requires=['cmake>=3.14.7']
 )
