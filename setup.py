@@ -1,6 +1,7 @@
 import os
 import subprocess
 import shutil
+import sys
 
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -40,7 +41,9 @@ class CMakeBuild(build_ext):
                                    '-B', 'build',
                                    '-DCMAKE_BUILD_TYPE={}'.format(cfg),
                                    *ext.cmake_options,
-                                   '-DCMAKE_INSTALL_PREFIX={}'.format(install_dir)],
+                                   '-DCMAKE_INSTALL_PREFIX={}'.format(install_dir),
+                                   '-DPYTHON_VERSION=' + '.'.join(str(i) for i in sys.version_info[0:2])
+                                   ],
 
                                   cwd=self.build_temp)
 

@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 add_subdirectory(libaesni)
 
-find_package(Python COMPONENTS Development REQUIRED)
+find_package(Python "${PYTHON_VERSION}" COMPONENTS Development REQUIRED)
 
 include(GNUInstallDirs)
 
